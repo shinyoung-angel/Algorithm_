@@ -22,6 +22,24 @@ perm(0)
 
 # ------------------------
 
+## idx: 자리 인덱스, n: 갯수
+def perm(idx, n):
+
+    if idx == n:
+        print(p)
+        return
+    else:
+
+        for i in range(idx, n):
+            p[idx], p[i] = p[i], p[idx]
+            perm(idx+1, n)
+            p[idx], p[i] = p[i], p[idx]
+
+p = [1, 2, 3]
+perm(0, 3)
+
+# ------------------------
+
 N = 3
 arr = [1, 2, 3]
 

@@ -17,3 +17,25 @@ for tc in range(1, 11):
     print()
 
 
+# ----------------------------------
+def in_order(v):
+    ## LVR
+    # 왼쪽 자식 있다면 내려가고 방문처리
+    # 오른쪽 자식이 있다면 내려가
+    if len(arr[v]) >= 3: in_order(int(arr[v][2]))
+    print(arr[v][1], end="")
+
+    if len(arr[v]) == 4: in_order(int(arr[v][3]))
+
+
+for tc in range(1, 11):
+    n = int(input())
+    arr = [[]] # 하나 미리 넣어 놓고 0번 인덱스 아이를 버리기
+
+    for i in range(n):
+        arr.append(input().split())
+
+
+    print('#{}'.format(tc), end=' ')
+    in_order(1)
+    print()

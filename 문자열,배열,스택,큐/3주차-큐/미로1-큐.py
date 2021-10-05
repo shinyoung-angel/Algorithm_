@@ -37,6 +37,5 @@ for tc in range(1, 11):
                 start_row = i
                 start_col = j
 
-    print(start_row, start_col)
 
     print('#{} {}'.format(tc, bfs()))
