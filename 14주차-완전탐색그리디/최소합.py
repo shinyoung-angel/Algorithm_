@@ -1,39 +1,30 @@
 
 
 
-# 우하
-dr = [0, 1]
-dc = [1, 0]
-
-def dfs(r, c, total):
-    global min_value
 
 
-    if r == n-1 and c == n-1:
-        total += arr[r][c]
-        if total < min_value:
-            min_value = total
-            return
-
-    if total > min_value:
-        return
-
-    for i in range(2):
-        nr = r + dr[i]
-        nc = c + dc[i]
-
-        if 0 <= nr < n and 0 <= nc < n and not visited[nr][nc]:
-            visited[nr][nc] = 1
-            dfs(nr, nc, total + arr[nr][nc])
-            visited[nr][nc] = 0
-
+# --------------------------
 
 for tc in range(1, int(input())+1):
     n = int(input())
     arr = [list(map(int, input().split())) for _ in range(n)]
-    visited = [[0]*n for _ in range(n)]
+    ## 최소값으로 값을 더해주는 리스트 생성
+    arr_count = [[0]*n for _ in range(n)]
 
-    min_value = 123456789
+    # 첫 번째 행과 열에 숫자를 미리 넣어주기
+    for i in range(n):
 
-    dfs(0, 0, 0)
-    print('#{} {}'.format(tc, min_value))
+        # 제일 첫번째 숫자 담기
+        if i == 0:
+            arr_count[0][i] += arr[0][i]
+
+        else:
+            arr_count[0][i] += arr_count[0][i-1] + arr[0][i]
+            arr_count[i][0] += arr_count[i-1][0] + arr[i][0]
+
+
+    for i in range(1, n):
+        for j in range(1, n):
+            arr_count[i][j] = min(arr_count[i][j-1]+arr[i][j], arr_count[i-1][j]+arr[i][j])
+
+    print('#{} {}'.format(tc, arr_count[n-1][n-1]))
