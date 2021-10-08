@@ -41,3 +41,30 @@ for tc in range(1, int(input())+1):
 
 
     print('#{} {}'.format(tc, cnt))
+
+# ------------------------------
+
+#재귀
+
+def binary_search_recurrsion(l,r, d, key):
+
+    if l >r: return 0               # 교차하면 땡땡
+    else:
+
+        mid = (l+r)//2
+
+        if key==a[mid]: return 1
+
+        elif key < a[mid]:
+            if d != 0:
+                return binary_search_recurrsion(l, mid-1, 0, key)
+
+        else:
+            if d != 1:
+                return binary_search_recurrsion(mid+1, r, 1, key)
+
+    return 0
+
+
+binary_search_recurrsion(0, n-1, -1, i )
+

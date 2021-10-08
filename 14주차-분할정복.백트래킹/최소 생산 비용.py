@@ -24,4 +24,26 @@ for tc in range(1, int(input())+1):
     total = 123456
     min_cost(0, 0)
 
+    factory2(0, 0, 0)
+
     print('#{} {}'.format(tc, total))
+
+# ---------------------------
+
+#### 비트 마스킹
+
+def factory2(idx, cnt, visit):            # 제픔번호//중간게산 결과///정수
+    global total
+
+    if total <= cnt:            # 가지치기
+        return
+
+    if idx == n:                # 가능한 열을 다 돌았음
+        total = cnt             # 위에서 가지치기를 했으니 바로 total에 cnt를 할당.
+        return
+
+    for j in range(n):          # 공장을 고르자!!
+        if visit & (1<<j): continue
+        factory2(idx+1, cnt+cost[idx][j], visit | (1<<j) )
+
+

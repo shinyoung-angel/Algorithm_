@@ -24,7 +24,6 @@ def divide(arr, left, right):                           #최소한의 단위로 
 
     if left < right:
         pivot = quick_sort(arr, left, right)            # 퀵 소트
-
         divide(arr, left, pivot-1)
         divide(arr, pivot+1, right)
 
@@ -40,32 +39,17 @@ for tc in range(1, int(input())+1):
 
 # -----------------------------------------------
 
-def partition(A, l, r):
-    ## 왼쪽 아이가 피봇
-    p = A[l]
-    i, j = l,r
+# 가장 오른쪽 아이를 기준으로 정렬하는 로무토는 시간이 오래 걸림
 
-    while i <= j:
+def lomuto(arr, l, r):
+    pivot = arr[r]              # 가장 오른쪽 구역
+    i = l-1                     # 경계구역
 
-        while i <= j and A[i] <= p:
+    for j in range(l, r):
+        if arr[j] <= pivot:
             i += 1
+            arr[i], arr[j] = arr[j], arr[i]
 
-        while i <= j and A[j] >= p:
-            j -= 1
+    arr[i+1], arr[r] = arr[r], arr[i+1]
+    return i+1
 
-        if i < j:
-            A[i], A[j] = A[j], A[i]
-
-    A[l], A[j] = A[j], A[l]
-    return j
-
-
-def quick_sort(A, l, r):
-    if l < r:
-        s = partition(A, l, r)
-        quick_sort(A, l, s-1)
-        quick_sort(A, s+1, r)
-
-arr = [2, 2, 1, 1, 3]
-quick_sort(arr, 0, len(arr)-1)
-print(arr)
