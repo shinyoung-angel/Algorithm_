@@ -1,5 +1,4 @@
 
-# https://tooo1.tistory.com/111
 
 def bfs():
 
@@ -27,6 +26,3 @@ arr = [0] * 100001
 bfs()
 print(arr[k]-1)
 
-#
-# ############
-# https://devjin-blog.com/boj-1697-hideseek/

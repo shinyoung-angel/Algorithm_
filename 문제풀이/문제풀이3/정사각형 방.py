@@ -36,3 +36,40 @@ for tc in range(1, int(input())+1):
 
     print('#{} {} {}'.format(tc, value, max_value+1))
 
+############################################
+## 위치와 거리를 한번에 담기
+
+for tc in range(1, int(input())+1):
+    n = int(input())
+    arr = []
+
+    room_position = [0] * (n*n+1)               # 룸의 위치를 저장
+    room_distance = [0] * (n*n+1)               # 해당 번호까지 지나온 방의 개수를 저장
+
+    # 입력받으면서 위치 정보를 저장.
+    for i in range(n):
+        tmp = list(map(int, input().split()))
+        for j in range(n):
+            room_position[tmp[j]] = (i, j)
+        arr.append(tmp)
+
+    # 거리 정보를 저장
+    for i in range(2, n*n+1):
+        for dr, dc in [(-1, 0), (1, 0), (0, 1), (0, -1)]:
+            nr = room_position[i][0] + dr
+            nc = room_position[i][1] + dc
+
+
+            if 0 <= nr < n and 0 <= nc < n and arr[nr][nc] == i-1:
+                room_distance[i] == room_distance[i-1] + 1
+                break
+
+    value = 0
+    max_value = 0
+
+    for i in range(1, n*n+1):
+        if room_distance[i] > max_value:
+            value = i
+            max_value = room_distance[i]
+
+    print('#{} {} {}'.format(tc, value-max_value +1, max_value))

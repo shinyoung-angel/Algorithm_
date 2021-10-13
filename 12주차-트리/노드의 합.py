@@ -19,28 +19,26 @@ for tc in range(1, int(input())+1):
 
 ### 후위 순회 활용
 
-def postorder(num):
+def postorder(st):
+    if st <= n:
+        postorder(2 * st)
+        postorder(2 * st + 1)
+        if 2 * st <= n:
+            tree[st] += tree[2 * st]
+        if 2 * st + 1 <= n:
+            tree[st] += tree[2 * st + 1]
 
-    if 2*num + 1 <= n:
-        postorder(2*num)
-        postorder(2*num+1)
-        tree[num] = tree[2*num] + tree[2*num+1]
 
-    elif num <= n//2:
-        postorder(2*num)
-        tree[num] = tree[2*num]
+t = int(input())
 
-for tc in range(1, int(input())+1):
+for tc in range(1, t + 1):
     n, m, l = map(int, input().split())
-    tree = [0] * (n+1)
-
+    tree = [0] * (n + 1)
     for i in range(m):
         node, value = map(int, input().split())
         tree[node] = value
 
     postorder(1)
     print('#{} {}'.format(tc, tree[l]))
-
-# --------------------
 
 

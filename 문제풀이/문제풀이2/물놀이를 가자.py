@@ -98,3 +98,50 @@ for tc in range(1, int(input()) + 1):
             ans += j
 
     print('#{} {}'.format(tc, ans))
+
+
+#####################################################런타임 에러 뜨네~~~~~~~~~~~~~~~~~~~
+
+
+##########런타임 에러 이유는
+##input을 리스트로 받아서 그럼
+## 그냥 문자열로 받으니까 멀쩡한디,,,,,,.
+
+from collections import deque
+
+dr = [-1, 1, 0, 0]
+dc = [0, 0, -1, 1]
+
+
+for tc in range(1, int(input())+1):
+    n, m = map(int, input().split())
+    arr = [list(input()) for _ in range(n)]
+    arr = [input() for _ in range(n)]
+    visited = [[-1]*m for _ in range(n)]
+
+    queue = deque()
+    for i in range(n):
+        for j in range(m):
+            if arr[i][j] == 'W':
+                queue.append((i, j))
+                visited[i][j] = 0
+
+    while queue:
+
+        r, c = queue.popleft()
+
+        for i in range(4):
+            nr = r + dr[i]
+            nc = c + dc[i]
+
+            if 0 <= nr < n and 0 <= nc < m:
+                if arr[nr][nc] == 'L' and visited[nr][nc] == -1:
+                    queue.append((nr, nc))
+                    visited[nr][nc] = visited[r][c] + 1
+
+    cnt = 0
+    for i in range(n):
+        for j in range(m):
+            cnt += visited[i][j]
+
+    print('#{} {}'.format(tc, cnt))
