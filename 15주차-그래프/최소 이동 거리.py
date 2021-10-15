@@ -35,3 +35,37 @@ for tc in range(1, int(input())+1):
 
 
 
+#############
+
+def dijkstra():
+    key = [123456789] * (v+1)
+    visited = [0] * (v+1)
+    key[0] = 0
+
+    for _ in range(v):
+        min_idx = -1
+        min_value = 123456789
+
+        for i in range(1, v+1):
+            if not visited[i] and key[i] < min_value:
+                min_idx = i
+                min_value = key[i]
+
+        visited[min_idx] = 1
+
+        for i in range(1, n+1):
+            if not visited[i] and key[i] > key[min_idx] + arr[min_idx][i]:
+                key[i] = key[min_idx] + arr[min_idx][i]
+
+    return key[v]
+
+for tc in range(1, int(input())+1):
+    v, e = map(int, input().split())
+    arr = [[123456789]*(v+1) for _ in range(v+1)]
+
+    for i in range(e):
+        s, e, w = map(int, input().split())
+        arr[s][e] = w                           ## 유향그래프
+
+
+    print('#{} {}'.format(tc, dijkstra()))

@@ -25,3 +25,47 @@ for tc in range(1, int(input())+1):
             cnt += 1
 
     print('#{} {}'.format(tc, cnt))
+
+
+##############
+
+def make_set(x):
+    p[x] = x
+    rank[x] = 0
+
+def find_set(x):
+    if p[x] != x:
+        p[x] = find_set(p[x])
+    return p[x]
+
+def union(x, y):
+    px = find_set(x)
+    py = find_set(y)
+
+    if rank[px] > rank[py]:
+        p[py] = px
+    else:
+        p[px] = py
+
+        if rank[px] == rank[py]:
+            rank[py] += 1
+
+
+for tc in range(1, int(input())+1):
+    n, m = map(int, input().split())
+    p = [0] * (n+1)
+    rank = [0] * (n+1)
+
+    for i in range(n+1):
+        make_set(i)
+
+    for i in range(m):
+        st, ed = map(int, input().split())
+        union(st, ed)
+
+    ans = 0
+    for i in range(1, n+1):
+        if i == p[i]:
+            ans += 1
+
+    print('#{} {}'.format(tc, ans))
