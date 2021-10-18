@@ -39,3 +39,29 @@ for tc in range(1, 11):
     print('#{}'.format(tc), end=' ')
     in_order(1)
     print()
+
+
+
+#################################
+
+def inorder(x):
+    global ans
+
+    if x > n:
+        return
+
+    inorder(x*2)
+    ans += alphabet[x]
+    inorder(x*2+1)
+
+for tc in range(1, 11):
+    n = int(input())
+    alphabet = [0] * (n+1)
+
+    for i in range(n):
+        info = list(input().split())
+        alphabet[int(info[0])] = info[1]
+    ans = ''
+    inorder(1)
+
+    print('#{} {}'.format(tc, ans))

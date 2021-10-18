@@ -97,7 +97,6 @@ for tc in range(1, int(input()) + 1):
 
     cnt = 0  ## 간선을 선택한 횟수
     ans = 0  ## 가중치를 더한 값
-    idx = 0  ## edges 인덱스
 
     for n1, n2, w in edges:
         if find_set(n1) != find_set(n2):
@@ -108,3 +107,41 @@ for tc in range(1, int(input()) + 1):
             if cnt == v:
                 break
     print('#{} {}'.format(tc, ans))
+
+
+
+##################################
+
+##### 힙
+
+import heapq
+
+def prim():
+    visited = [0] * (n+1)
+
+    heap = []
+    heapq.heappush(heap, (0, 0))    #3 가중치와 정점을 넣었음
+    ans = 0
+
+    while heap:
+        w, v = heapq.heappop(heap)
+        if not visited[v]:
+            ans += w
+            visited[v] = 1
+
+            for idx, weight in adj[v]:
+                if not visited[idx]:
+                    heapq.heappush(heap, (weight, idx))
+
+    return ans
+
+for tc in range(1, int(input())+1):
+    n, e = map(int, input().split())
+    adj = [[] for _ in range(n+1)]
+
+    for i in range(e):
+        st, ed, w = map(int, input().split())
+        adj[st].append((ed, w))
+        adj[ed].append((st, w))
+
+    print('#{} {}'.format(tc, prim()))

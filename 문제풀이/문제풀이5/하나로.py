@@ -20,7 +20,6 @@ for tc in range(1, int(input())+1):
             b_y = y[j]
             arr[i][j] = arr[j][i] = ((a_x-b_x)**2 + (a_y-b_y)**2)**0.5
 
-
     for i in range(n-1):
 
         min_idx = -1

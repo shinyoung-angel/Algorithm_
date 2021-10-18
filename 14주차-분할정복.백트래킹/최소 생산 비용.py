@@ -23,9 +23,6 @@ for tc in range(1, int(input())+1):
     visited_row = [0] * n       # 행을 갔다 왔는지 췤
     total = 123456
     min_cost(0, 0)
-
-    factory2(0, 0, 0)
-
     print('#{} {}'.format(tc, total))
 
 # ---------------------------

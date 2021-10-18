@@ -1,6 +1,23 @@
 
-def dijkstra():
-    pass  다익스트라 호출 구현해보아라`````````
+def dijkstra(distance, adj):
+    visited = [0] * (n+1)
+    distance[x] = 0
+
+    for _ in range(n-1):
+
+        min_idx = -1
+        min_value = 123456789
+
+        for i in range(1, n+1):
+            if not visited[i] and distance[i] < min_value:
+                min_idx = i
+                min_value = distance[i]
+        visited[min_idx] = 1
+
+        for i in range(1, n+1):
+            if not visited[i] and distance[i] > distance[min_idx] + adj[min_idx][i]:
+                distance[i] = distance[min_idx] + adj[min_idx][i]
+
 
 for tc in range(1, int(input())+1):
     n ,m ,x = map(int, input().split())
@@ -14,8 +31,9 @@ for tc in range(1, int(input())+1):
 
     key_1 = [123456789] * (n+1)
     key_2 = [123456789] * (n+1)
+    dijkstra(key_1, arr1)
+    dijkstra(key_2, arr2)
 
-    ## 다익스트라 호출
     max_value = 0
 
     for i in range(1, n+1):

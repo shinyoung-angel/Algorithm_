@@ -115,7 +115,6 @@ dc = [0, 0, -1, 1]
 
 for tc in range(1, int(input())+1):
     n, m = map(int, input().split())
-    arr = [list(input()) for _ in range(n)]
     arr = [input() for _ in range(n)]
     visited = [[-1]*m for _ in range(n)]
 

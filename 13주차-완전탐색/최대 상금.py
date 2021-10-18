@@ -46,37 +46,44 @@ for tc in range(1, int(input())+1):
     print('#{} {}'.format(tc, check()))
 
 # ---------------------------------
-# cnt: 바꾼 횟수
+# cnt : 바꾼 횟수
 def change(cnt):
     global ans
-    curr = int(''.join(money))
-    #####################s
+    curr = int("".join(money))
+##############################################
     if [curr, cnt] in visited:
         return
     visited.append([curr, cnt])
-    #####################
+##############################################
 
-    if cnt == k:
+    if cnt == K:
         ans = max(ans, curr)
         return
 
     for i in range(len(money)-1):
-        for j in range(i+1, len(money)):
+        for j in range(i + 1, len(money)):
             money[i], money[j] = money[j], money[i]
             change(cnt+1)
             money[i], money[j] = money[j], money[i]
 
 
 
-for tc in range(1, int(input())+1):
-    money, k = input().split()
+T = int(input())
+
+for tc in range(1, T+1):
+    money, K = input().split()
     money = list(money)
 
-    ## 가지치기용 리스트 만둘깅
-    visited = []
-    k = int(k)
+    visited = [] #쳌킹
+
+    K = int(K)
 
     ans = 0
+
+    change(0)
+
+    print("#{} {}".format(tc, ans))
+
     check(k)
 
     print('#{} {}'.format(tc, ans))

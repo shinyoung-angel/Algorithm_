@@ -23,45 +23,13 @@ for tc in range(1, int(input())+1):
 
 
 
-# --------------------------------
-
-
-# 12513. 5177. [파이썬 S/W 문제해결 기본] 8일차 - 이진 힙
-
-def node_node(_i, _num):
-    if _i == 1:
-        return
-
-    if nodes[_i // 2] > _num:
-        nodes[_i] = nodes[_i // 2]
-        nodes[_i // 2] = _num
-        node_node(_i // 2, nodes[_i // 2])
-
-
-T = int(input())
-for tc in range(1, T + 1):
-    N = int(input())
-    nums = list(map(int, input().split()))
-    nodes = [0] * (N + 1)
-    i = 1
-    for num in nums:
-        nodes[i] = num
-        node_node(i, num)
-        i += 1
-
-    result = 0
-    while N > 1:
-        N //= 2
-        result += nodes[N]
-    print('#{} {}'.format(tc, result))
-
 # --------------------------
 
 T = int(input())
 for tc in range(1, T+1):
     N = int(input())
-    nums = list(map(int, input().split()))
-    heap = [0]
+    nums = [0] + list(map(int, input().split()))
+    heap = []
     # 최소heap 만들기
     for num in nums:
         heap.append(num)
@@ -81,27 +49,24 @@ for tc in range(1, T+1):
 
 # -------------------------
 
-def heap_sort(node):
-    mom_node = node // 2
-    if mom_node < 0:
-        return
-    else:
-        if tree[mom_node] > tree[node]:
-            tree[node], tree[mom_node] = tree[mom_node], tree[node]
-            heap_sort(mom_node)
+#################################################
 
+import heapq
 
-for test in range(1, int(input()) + 1):
-    N = int(input())
-    tree = [0]
-    node_num = 1
-    for num in map(int, input().split()):
-        tree.append(num)
-        heap_sort(node_num)
-        node_num += 1
-    sum_value = 0
-    while N:
-        N //= 2
-        sum_value += tree[N]
+for tc in range(1, int(input())+1):
+    n = int(input())
+    num = [0] + list(map(int, input().split()))
 
-    print(f'#{test} {sum_value}')
+    heap = []
+
+    for i in range(1, n+1):
+        heapq.heappush(heap, num[i])
+
+    heap = [0] + heap
+    ans = 0
+    while n > 0:
+
+        ans += heap[n//2]
+        n //= 2
+
+    print('#{} {}'.format(tc, ans))

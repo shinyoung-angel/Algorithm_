@@ -2,19 +2,16 @@
 
 for tc in range(1, int(input())+1):
     n, m, l = map(int, input().split())
-    tree = [0 for _ in range(n+1)]
+    node = [0] * (n+1) + [0]
 
     for i in range(m):
-        node, value = map(int, input().split())
-        tree[node] = value
+        idx, value = map(int, input().split())
+        node[idx] = value
 
+    for i in range(n//2, 0, -1):
+        node[i] += node[i*2] + node[i*2+1]
 
-    for i in range(n, 0, -1):
-        if i // 2 >= 1:
-            tree[i//2] += tree[i]
-
-
-    print('#{} {}'.format(tc, tree[l]))
+    print('#{} {}'.format(tc, node[l]))
 
 
 ### 후위 순회 활용
