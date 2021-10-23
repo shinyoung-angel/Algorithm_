@@ -14,7 +14,7 @@ def bellman(x):
                     key[ed] = key[i] + w                        ## 현재의 key값이 무한대가 아니고!! 연결 키값이 더 크다면 갱신
 
                     if _ == n-1:                    ## 원래는 정점-1 만큼 돌지만 정점만큼 반복을 돌려서 혹시 값이 바뀐다면
-                        flag = 1                    ## flag 값이 바뀌게 됨. 그 말은 음수 순환이 있다는 뜻 
+                        flag = 1                    ## flag 값이 바뀌게 됨. 그 말은 음수 순환이 있다는 뜻
     return flag
 
 n, m = map(int, input().split())
