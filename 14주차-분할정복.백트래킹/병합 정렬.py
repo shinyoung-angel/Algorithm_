@@ -47,5 +47,6 @@ for tc in range(1, int(input())+1):
     cnt = 0
     n = int(input())
     arr = list(map(int, input().split()))
+
     print('#{} {} {}'.format(tc, divide(arr)[n//2], cnt))
 
