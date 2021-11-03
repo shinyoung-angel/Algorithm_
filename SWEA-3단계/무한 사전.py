@@ -1,18 +1,13 @@
 
 
 for tc in range(1, int(input())+1):
-    word1 = input()
-    word2 = input()
+    word1 = input().strip()
+    word2 = input().strip()
 
-    result = 'N'
 
-    for i in word1:
-        if i not in word2:
-            result = 'Y'
+    result = 'Y'
 
-    for i in word2:
-        if i not in word1:
-            result = 'Y'
-
+    if word1 == word2[:len(word2)-1] and word2[-1] == 'a':
+        result = 'N'
 
     print('#{} {}'.format(tc, result))
