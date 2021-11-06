@@ -1,40 +1,38 @@
 
+
 import sys
 input = sys.stdin.readline
 
-
-
-def check(index):
-
-    price = info[index][1]
-
-    time = info[index][0] + index
-
-    if time > n+1:
-        return 0
-    else:
-
-        while time <= n+1:
-
-            price += info[time][1]
-
-    return price
-
-
 n = int(input())
-info = [[0, 0] for _ in range(n+1)]
-result = 0
+arr = [list(map(int, input().split())) for _ in range(n)]
+arr.insert(0, [0, 0])
+dp = [0] * (n+2)
 
-for i in range(1, n+1):
-    t, p = map(int, input().split())
-    info[i][0] = t
-    info[i][1] = p
+for i in range(n, 0, -1):
+    if i + arr[i][0] > n+1:
+        dp[i] = dp[i+1]
+    else:
+        dp[i] = max(dp[i+1], arr[i][1] + dp[i+arr[i][0]])
 
-for i in range(1, n+1):
-    if check(i) > result:
-        result = check(i)
+print(dp[1])
 
-print(result)
+########################
+
+def counseling(idx=0, pay=0):
+    global ans
+
+    for i in range(idx, N):
+        if i + test_case[i][0] < N+1:
+            counseling(i + test_case[i][0], pay + test_case[i][1])
+    if ans < pay:
+        ans = pay
+    return
 
 
+N = int(input().strip())
 
+test_case = [list(map(int, input().strip().split())) for _ in range(N)]
+
+ans = 0
+counseling()
+print(ans)
