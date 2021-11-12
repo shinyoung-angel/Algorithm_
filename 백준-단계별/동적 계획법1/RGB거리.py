@@ -7,21 +7,10 @@ ans = []
 
 arr = [list(map(int, input().split())) for _ in range(n)]
 
-for j in range(3):
-    result = arr[0][j]
-    idx = j
-    for i in range(1, n):
-        if idx == 0:
-            value = min(arr[i][1], arr[i][2])
+### 둘째줄부터 위에 있는 아이들 중 최소값을 더해주기
+for i in range(1, n):
+    arr[i][0] += min(arr[i-1][1], arr[i-1][2])
+    arr[i][1] += min(arr[i-1][0], arr[i-1][2])
+    arr[i][2] += min(arr[i-1][1], arr[i-1][0])
 
-        elif idx == 1:
-            value = min(arr[i][0], arr[i][2])
-
-        elif idx == 2:
-            value = min(arr[i][0], arr[i][1])
-
-        idx = arr[i].index(value)
-        result += value
-    ans.append(result)
-
-print(min(ans))
+print(min(arr[n-1]))

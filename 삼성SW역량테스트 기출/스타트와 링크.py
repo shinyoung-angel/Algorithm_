@@ -27,5 +27,3 @@ for team in range(comb_cnt//2):                     ## 팀 하나를 뽑아 다�
 print(result)
 
 
-
-
