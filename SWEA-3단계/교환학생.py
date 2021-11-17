@@ -1,28 +1,21 @@
 
-
-for tc in range(1, int(input())+1):
+for tc in range(1, int(input() ) +1):
     n = int(input())
-    week = list(map(int, input().split())) * 100000
+    week = list(map(int, input().split()))
 
-    for idx in range(7):
-        if week[idx] == 1:
-            start = idx
-            break
+    result = 123456789
 
-    cnt = 0
-    result = 0
+    for i in range(7):
+        if week[i] == 1:
+            idx = i
+            cnt = 0
+            day = 0
+            while cnt < n:
+                cnt += week[idx]
+                idx = (idx +1) % 7
+                day += 1
 
-    for idx in range(start, 7000000):
-        i = week[idx]
-        if i == 1:
-            cnt += 1
-            if cnt == n:
-                result = idx + 1 - start
-                break
-
+            if result > day:
+                result = day
 
     print('#{} {}'.format(tc, result))
-
-
-
-
