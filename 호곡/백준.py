@@ -1,33 +1,41 @@
 
+dh = [0, 0, 0, 0, -1, 1]
+dr = [-1, 1, 0, 0, 0, 0]
+dc = [0, 0, -1, 1, 0, 0]
 
-def dfs(start):
-    pass
-def bfs(start):
+def bfs(hh, xx, yy):
+    queue = [(hh, xx, yy)]
 
-    queue = [start]
-    visited_bfs[start] = 1
     while queue:
+        h, x, y = queue.pop(0)
 
-        hey = queue.pop(0)
-        print(hey, end=' ')
+        for i in range(6):
+            nh = h + dh[i]
+            nr = x + dr[i]
+            nc = y + dc[i]
 
-        for i in range(1, n+1):
-            if arr[hey][i] and not visited[i]:
-                queue.append(i)
-                visited_bfs[i] = 1
+            if 0 <= nh < h and 0 <= nr < n and 0 <= nc < m:
+                if tomato[nh][nr][nc] == 0:
+                    tomato[nh][nr][nc] == 1
+                    queue.append((nh, nr, nc))
 
+m, n, h = map(int, input().split())
+tomato = [[list(map(int, input().split())) for _ in range(n)] for _ in range(h)]
+cnt = 0
+print(tomato)
+for i in range(h):
+    for j in range(n):
+        for k in range(m):
+            if tomato[i][j][k] == 1:
+                cnt += 1
+                bfs(i,j,k)
 
-n, m, v = map(int, input().split())
+for i in range(h):
+    for j in range(n):
+        for k in range(m):
+            if tomato[i][j][k] == 0:
+                cnt = -1
+                break
 
-## 인접 행렬
-arr = [[0]*(n+1) for _ in range(n+1)]
-visited_dfs = [0] * (n+1)
-visited_bfs = [0] * (n+1)
-
-for i in range(m):
-    a, b = map(int, input().split())
-    arr[a][b] = 1
-    arr[b][a] = 1
-dfs(v)
-bfs(v)
-
+print(cnt)
+print(tomato)
