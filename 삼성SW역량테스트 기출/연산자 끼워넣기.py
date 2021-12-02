@@ -1,30 +1,4 @@
-
-# import sys
-#
-# sys.stdin = open("i nput.txt", "r")
-
-
-
-# N = 3
-# arr = [1, 2, 3]
-# sel = [0] * N  # 내가 직접 뽑은거 넣을 리스트
-# check = [0] * N  # 내가 사용한거 체크할 리스트
-#
-#
-# def perm(idx):
-#     if idx == N:
-#         print(sel)
-#     else:
-#         for i in range(N):
-#             if check[i] == 0:
-#                 sel[idx] = arr[i]
-#                 check[i] = 1  # 사용했다... 쳌
-#                 perm(idx + 1)
-#                 check[i] = 0  # 원상복귀
-#
-# perm(0)
-
-import itertools
+from itertools import permutations
 import sys
 input = sys.stdin.readline
 
@@ -38,9 +12,7 @@ operator += '*'*operator_num[2]
 operator += '/'*operator_num[3]
 operator = list(operator)
 
-operator_comb = set(list(itertools.permutations(operator, n-1)))
-
-
+operator_comb = set(list(permutations(operator)))
 
 result = set()
 for ope_set in operator_comb:
@@ -53,8 +25,14 @@ for ope_set in operator_comb:
         elif ope_set[j] == '*':
             num_sum *= num[j+1]
         elif ope_set[j] == '/':
-            num_sum = abs(num_sum) // num[j+1]
+            ################### 조심 ###############
+            if num_sum < 0:
+                num_sum = abs(num_sum) // num[j + 1]
+                num_sum *= -1
+            else:
+                num_sum = abs(num_sum) // num[j + 1]
     result.add(num_sum)
 
 print(max(result))
 print(min(result))
+
