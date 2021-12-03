@@ -16,7 +16,7 @@ def bfs(hh, xx, yy):
 
             if 0 <= nh < h and 0 <= nr < n and 0 <= nc < m:
                 if tomato[nh][nr][nc] == 0:
-                    tomato[nh][nr][nc] == 1
+                    tomato[nh][nr][nc] = 1
                     queue.append((nh, nr, nc))
 
 m, n, h = map(int, input().split())
