@@ -1,6 +1,5 @@
 import sys
 from collections import deque
-
 input = sys.stdin.readline
 
 ##### 2차원으로 생각하지 말고 3차원으로 생각하기~~~~~~~~~~~~~~~~~~

@@ -24,3 +24,8 @@
 #
 # perm(0)
 
+arr = [list(map(int, input().split())) for _ in range(5)]
+
+print(arr)
+print(list(map(max,arr)))
+print(max(map(max,arr)))
