@@ -27,8 +27,10 @@ n = int(input())
 arr = []
 num_list = set()
 for _ in range(n):
+    ## 2차원 리스트 만들기
     tmp = list(map(int, input().split()))
     arr.append(tmp)
+    ## 각 요소들을 중복 없이 num_list애 담기
     for i in tmp:
         num_list.add(i)
 
@@ -59,3 +61,40 @@ if answer == 0:
     print(1)
 else:
     print(answer)
+
+
+########################################################
+
+sys.setrecursionlimit(100000)
+
+dr = [-1, 1, 0, 0]
+dc = [0, 0, -1, 1]
+
+def dfs(x, y):
+
+    visited[x][y] = 1
+
+    for i in range(4):
+        nr = x + dr[i]
+        nc = y + dc[i]
+
+        if 0 <= nr < n and 0 <= nc < n:
+            if arr[nr][nc] > num and not visited[nr][nc]:
+                dfs(nr, nc)
+
+n = int(input())
+arr = [list(map(int, input().split())) for _ in range(n)]
+num_range = max(map(max, arr))                              ## 2차원 리스트에서 max값 찾는 방법 (각 행에서 최대값을 찾은 후 그 값들 중의 최대값을 찾기)
+result = 0
+
+for num in range(num_range):
+    visited = [[0]*n for _ in range(n)]
+    cnt = 0
+    for i in range(n):
+        for j in range(n):
+            if arr[i][j] > num and visited[i][j] == 0:      ## 해당 높이 이상인 요소들을 dfs탐색하기
+                dfs(i, j)
+                cnt += 1
+    result = max(result, cnt)
+
+print(result)
