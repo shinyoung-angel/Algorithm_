@@ -1,46 +1,65 @@
 
+import sys
+input = sys.stdin.readline
+
+def bfs(r, c):
+    queue = [(r, c)]
+    visited.append([r,c])
+    while queue:
+        x, y = queue.pop(0)
+
+        if x == store[-1][0] and y == store[-1][1]:
+            print('happy')
+            return
+
+        for nx, ny in store:
+            dist = abs(x-nx) + abs(y-ny)
+            if dist <= 1000 and [nx, ny] not in visited:
+                queue.append((nx, ny))
+                visited.append([nx, ny])
+
+    print('sad')
 
 for tc in range(int(input())):
     ## 편의점 갯수
     n = int(input())
     house_x, house_y = map(int, input().split())
     store = []
-    for _ in range(n):
+    for _ in range(n+1):
         tmp = list(map(int, input().split()))
         store.append(tmp)
-    fest_x, fest_y = map(int, input().split())
-    distance = 0
-    ## 편의점이 없는 경우
-    result = 'happy'
-    if n == 0:
-        distance = abs(house_x-fest_x) + abs(house_y-fest_y)
-        if distance > 1000:
-            result = 'sad'
-            break
+
+    visited = []
+    bfs(house_x, house_y)
+
+
+#####################
+
+def case():
+    q = deque([start])
+    visited = set()
+    while q:
+        x, y = q.popleft()
+        if abs(x - dest[0]) + abs(y - dest[1]) <= 1000:
+            return True
+        for i in range(n):
+            if i not in visited:
+                nx, ny = store[i]
+                if abs(x - nx) + abs(y - ny) <= 1000:
+                    q.append([nx, ny])
+                    visited.add(i)
+    return False
+
+
+for i in range(t):
+    n = int(sys.stdin.readline())
+
+    start = list(map(int, sys.stdin.readline().split()))
+    store = [list(map(int, sys.stdin.readline().split())) for _ in range(n)]
+    dest = list(map(int, sys.stdin.readline().split()))
+
+    if case():
+        print("happy")
     else:
-        for num in range(n):
-            store_x = store[num][0]
-            store_y = store[num][1]
-            if num == 0:
-                distance = abs(house_x-store_x) + abs(house_y-store_y)
-                now_x = store_x
-                now_y = store_y
-            else:
-                distance = abs(now_x - store_x) + abs(now_y - store_y)
-                now_x = store_x
-                now_y = store_y
-
-            if distance > 1000:
-                result = 'sad'
-                break
-
-        distance = abs(fest_x - now_x) + abs(fest_y - now_y)
-        if distance > 1000:
-            result = 'sad'
-            break
-
-    print(result)
-
-
-
+        print("sad")
 
