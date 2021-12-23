@@ -1,10 +1,5 @@
 
 
-for tc in range(1, int(input())+1):
-    arr = [list(input()) for _ in range(4)]
-    print(arr)
-
-###
 def get_winner(row):
     x_cnt, o_cnt, t_cnt = 0, 0, 0
     for c in row:

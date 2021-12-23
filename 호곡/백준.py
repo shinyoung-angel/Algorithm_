@@ -25,8 +25,10 @@ for tc in range(1, int(input())+1):
             elif now_c == 'T': col_t += 1
         if (row_t==1 and row_x==3)  or row_x == 4:
             winner = 'X won'
+            break
         elif (row_t==1 and row_o==3) or row_o == 4:
             winner = 'O won'
+            break
 
     left_x, left_o, left_t = 0, 0, 0
     right_x, right_o, right_t = 0, 0, 0
@@ -46,8 +48,10 @@ for tc in range(1, int(input())+1):
                     elif tmp == 'T': right_t += 1
             if (left_t == 1 and left_x == 3) or left_x == 4 or right_x == 4 or (right_t==1 and right_x==3):
                 winner = 'X won'
+                break
             elif (left_t==1 and left_o==3) or left_o==4 or right_o==4 or (right_t==1 and right_o==3):
                 winner = 'O won'
+                break
 
 
     if winner == 'Draw':

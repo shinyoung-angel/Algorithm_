@@ -13,7 +13,7 @@ for tc in range(1, int(input())+1):
 
     print('#{} {}'.format(tc, result))
 
-##
+#####################
 
 T = int(input())
 for test_case in range(1, T + 1):
