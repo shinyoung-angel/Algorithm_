@@ -1,14 +1,38 @@
-import sys
-input = sys.stdin.readline
+# import sys
+# input = sys.stdin.readline
 
-from collections import  deque
 
 n = int(input())
+arr = [input() for _ in range(n)]
+queue = []
+for tmp in arr:
 
-arr = deque(list(range(1, n+1)))
+    if tmp[:4] == 'push':
+        queue.append(int(tmp[5:]))
 
-while len(arr) > 1:
-    arr.popleft()
-    arr.append(arr.popleft())
+    elif tmp == 'pop':
+        if not queue:
+            print(-1)
+        else:
+            print(queue.pop(0))
 
-print(*arr)
+    elif tmp == 'size':
+        print(len(queue))
+
+    elif tmp == 'empty':
+        if not queue:
+            print(1)
+        else:
+            print(0)
+
+    elif tmp == 'front':
+        if not queue:
+            print(-1)
+        else:
+            print(queue[0])
+
+    elif tmp == 'back':
+        if not queue:
+            print(-1)
+        else:
+            print(queue[-1])
