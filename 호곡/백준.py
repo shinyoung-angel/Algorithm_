@@ -1,38 +1,9 @@
-# import sys
-# input = sys.stdin.readline
-
+import sys
+input = sys.stdin.readline
 
 n = int(input())
-arr = [input() for _ in range(n)]
-queue = []
-for tmp in arr:
+arr = [list(map(int, input().split())) for _ in range(n)]
+arr.sort(key = lambda x:(x[0], x[1]))
 
-    if tmp[:4] == 'push':
-        queue.append(int(tmp[5:]))
-
-    elif tmp == 'pop':
-        if not queue:
-            print(-1)
-        else:
-            print(queue.pop(0))
-
-    elif tmp == 'size':
-        print(len(queue))
-
-    elif tmp == 'empty':
-        if not queue:
-            print(1)
-        else:
-            print(0)
-
-    elif tmp == 'front':
-        if not queue:
-            print(-1)
-        else:
-            print(queue[0])
-
-    elif tmp == 'back':
-        if not queue:
-            print(-1)
-        else:
-            print(queue[-1])
+for i in arr:
+    print(*i)
