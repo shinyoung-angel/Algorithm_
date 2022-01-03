@@ -11,14 +11,14 @@ compare = list(map(int, input().split()))
 num_dic = {}
 
 ### 그냥 조건으로 if nums[i] 이렇게 하면 음수가 key값일 때 keyboard에러가 남
-## 하쥐만 try, except는 된다,,,?????
+## 하쥐만 try, except는 된다,,,????? --> keyerror 발생 이유는 해당 key가 딕셔너리에 없기 때문이다!!
+## 따라서 try, except를 사용한다면 keyerror가 나는 상황을 피할 수 있음.
 
 for i in nums:
     try: num_dic[i] += 1
     except: num_dic[i] = 1
 
-## 얘도 마찬가지로 조건으로 주면 안되고
-## try, except로 하면 된다,,,,!!!!!
+
 for j in compare:
     try:
         print(num_dic[j], end= ' ')
