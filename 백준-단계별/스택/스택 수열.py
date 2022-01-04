@@ -1,30 +1,30 @@
 
 
-n = int(input())
-arr = [int(input()) for _ in range(n)]
+import sys
+input = sys.stdin.readline
 
+n = int(input())
+cnt = 1
+tmp = True
 stack = []
 result = []
-cnt = 0
-check = False
-for num in range(1, n+1):
-    stack.append(num)
-    result.append('+')
-    while True:
 
-        if len(stack) >= 2 and arr[cnt] in stack[:-1]:
-            check = True
-            break
-        if stack[-1] == arr[cnt]:
-            stack.pop()
-            result.append('-')
-            cnt += 1
-        else:
-            continue
-    if check == True:
+for i in range(n):
+    num = int(input())
+
+    while cnt <= num:
+        stack.append(cnt)
+        result.append('+')
+        cnt += 1
+
+    if stack[-1] == num:
+        stack.pop()
+        result.append('-')
+    else:
+        tmp = False
         break
 
-if check == True:
+if tmp == False:
     print('NO')
 else:
     for i in result:
