@@ -4,7 +4,7 @@ input = sys.stdin.readline
 dr = [-1, 1, 0, 0]
 dc = [0, 0, -1, 1]
 
-
+##
 n = int(input())
 arr = [[0]*n for _ in range(n)]
 ## 한 번에 정보를 받음
