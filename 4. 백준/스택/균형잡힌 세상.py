@@ -1,8 +1,8 @@
-import sys
-input = sys.stdin.readline
+# import sys
+# input = sys.stdin.readline
 
 arr = []
-for i in range(100000):
+while True:
     tmp = input()
     if tmp == '.': break
     arr.append(tmp)
@@ -16,17 +16,19 @@ for i in arr:
     for j in tmp:
         if j == '(' or j == '[':
             stack.append(j)
-        elif stack:
-            if j == ')' and stack[-1] == '(':
-                stack.pop()
-            elif j == ']' and stack[-1] == '[':
-                stack.pop()
-
-        elif not stack:
-            if j == ']' or j == '(':
+        elif j == ')':
+            if not stack or stack[-1] == '[':
                 result = 'no'
                 break
+            elif stack[-1] == '(':
+                stack.pop()
 
+        elif j == ']':
+            if not stack or stack[-1] == '(':
+                result = 'no'
+                break
+            elif stack[-1] == '[':
+                stack.pop()
     if stack:
         result = 'no'
 
