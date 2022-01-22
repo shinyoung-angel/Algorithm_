@@ -37,3 +37,4 @@ for i in range(4):
     cnt += gears[i+1][0] * (2**i)
 
 print(cnt)
+
