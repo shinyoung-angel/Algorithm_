@@ -8,7 +8,7 @@ cnt_0 = 0
 cnt_1 = 0
 cnt_minus = 0
 
-
+### 어려운 재귀
 def check(x, y, n):
     global cnt_0, cnt_1, cnt_minus
 
