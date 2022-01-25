@@ -26,7 +26,6 @@ def left(num):
 
 
 num_list = [list(map(int, input().strip())) for _ in range(4)]
-print(num_list)
 k = int(input())
 
 for _ in range(k):
@@ -38,7 +37,10 @@ for _ in range(k):
 
 for i in range(4):
     if dir_list[i] == 1:
-        num_list[i].index(0, num_list[i].pop())
+        try:
+            num_list[i].index(0, num_list[i].pop())
+        except:
+            pass
     elif dir_list[i] == -1:
         num_list[i].append(num_list[i].pop(0))
 
