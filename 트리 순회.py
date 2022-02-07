@@ -33,3 +33,12 @@ print()
 in_('A')
 print()
 post('A')
+
+7
+A B C
+B D .
+C E F
+E . .
+F . G
+D . .
+G . .
