@@ -12,9 +12,7 @@ time = [list(map(int, input().split())) for _ in range(n)]
 ## 1. 시작 시간을 기준으로 오름차순
 ## 2. 끝나는 시간을 기준으로 오름차순
 time.sort()
-print(time)
 time.sort(key= lambda x: x[1])
-print(time)
 
 
 now = time[0][1]
