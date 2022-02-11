@@ -1,28 +1,8 @@
 
 
 
-import sys
-input = sys.stdin.readline
-
-# v = int(input())
-#
-#
-# ## 주어진 거리를 할당하기
-# arr = [[0]*(v+1) for _ in range(v+1)]
-# for _ in range(v):
-#     tmp = list(map(int, input().split()))
-#     start = tmp[0]
-#     for i in range(1, len(tmp), 2):
-#         node = tmp[i]
-#         if node == -1:
-#             break
-#         else:
-#             dist = tmp[i + 1]
-#             arr[start][node] = dist
-#             arr[node][start] = dist
-#
-
-
+# import sys
+# input = sys.stdin.readline
 
 
 
