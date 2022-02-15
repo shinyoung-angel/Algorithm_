@@ -1,40 +1,46 @@
-import heapq
 import sys
 input = sys.stdin.readline
 
 tc = int(input())
 
-def dijkstra(start):
-    heap = [(0, start)]
-    key = [123456879] * (n+1)
+def bellman(start):
+
+    key = [123456789] * (n+1)
     key[start] = 0
 
-    while heap:
-        dist, node = heapq.heappop(heap)
-        if key[node] < dist: continue
+    ## 모든 노드에 대한
+    ## 모든 간선을 매번 순회함
+    ## 마~~~~~지막 라운드에도 값이 변한다면
+    ## 요것은 음수 순환이 있다는 증명
+    for i in range(n):
+        for a, b, c in edges:
+            cost = key[a] + c
+            if key[b] > cost:
+                key[b] = cost
+                if i == n-1:
+                    return 0
 
-        for n_dist, n_node in road[node]:
-            cost = dist + n_dist
-            if cost < key[n_node]:
-                key[n_node] = cost
-                heapq.heappush(heap, (n_dist, n_node))
-    return key
+    return 1
 
 for i in range(tc):
     n, m, w = map(int, input().split())
-    road = [[] for _ in range(n+1)]
+
+    ## 도로는 무방향
+    edges = []
     for _ in range(m):
         a, b, c = map(int, input().split())
-        road[a].append((c, b))
-        road[b].append((c, a))
+        edges.append((a, b, c))
+        edges.append((b, a, c))
 
-    key = dijkstra(1)
-    result = 'NO'
+    ## 웜홀은 방향
     for _ in range(w):
         a, b, c = map(int, input().split())
-        if key[a] - c < 0: result = 'YES'
+        edges.append((a, b, -c))
 
-    print(result)
+    ## bellman = true라면 즉, 음수 순환이 없다면 NO
+    ## bellman = false라면 즉, 음수 순환이 있다면 YES
+    print('NO' if bellman(1) else 'YES')
+
 
 
 
