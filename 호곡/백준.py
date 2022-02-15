@@ -37,6 +37,6 @@ for i in range(tc):
         a, b, c = map(int, input().split())
         edges.append((a, b, -c))
 
-    print(bellman(1))
+    print(bellman(2))
 
 
