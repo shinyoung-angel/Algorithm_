@@ -2,24 +2,25 @@ from collections import deque
 
 
 def check(start):
-    queue = deque([start])
-    visited = [0] * (n+1)
-    visited[start] = 1
-    depths = [0] * (n+1)
-    depths[1] = time[start]
-    depth = 1
+    order = 1
+    queue = deque([(start, order)])
+    # visited = [0] * (n+1)
+    # visited[start] = 1
+    depth_list = [0] * (n+1)
+    depth_list[1] = time[start]
+
     while queue:
-        t = queue.popleft()
+        node, depth = queue.popleft()
 
-        depth += 1
+
         for idx, val in enumerate(tree):
-            if t in val and not visited[idx]:
-                queue.append(idx)
-                visited[idx] = 1
-                depths[depth] = max(depths[depth], time[idx])
+            if node in val:
+                queue.append((idx, depth+1))
+                # visited[idx] = 1
+                depth_list[depth+1] = max(depth_list[depth+1], time[idx])
 
 
-    return depths
+    return sum(depth_list)
 
 
 for tc in range(int(input())):
