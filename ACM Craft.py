@@ -1,36 +1,45 @@
 from collections import deque
+import sys
+input = sys.stdin.readline
 
-
-def check(start):
-    order = 1
-    queue = deque([(start, order)])
-    # visited = [0] * (n+1)
-    # visited[start] = 1
-    depth_list = [0] * (n+1)
-    depth_list[1] = time[start]
+def topology():
 
     while queue:
-        node, depth = queue.popleft()
+        t = queue.popleft()
 
+        for j in tree[t]:
+            in_degree[j] -= 1
+            dp[j] = max(dp[j], dp[t]+time[j])
+            if in_degree[j] == 0:
+                queue.append(j)
 
-        for idx, val in enumerate(tree):
-            if node in val:
-                queue.append((idx, depth+1))
-                # visited[idx] = 1
-                depth_list[depth+1] = max(depth_list[depth+1], time[idx])
-
-
-    return sum(depth_list)
-
+    return dp
 
 for tc in range(int(input())):
     n, k = map(int, input().split())
     time = [0] + list(map(int, input().split()))
     tree = [[] for _ in range(n+1)]
+    in_degree = [0] * (n+1)
+    dp = [0] * (n+1)
+
+    ## 정보 담기
     for _ in range(k):
-        x, y = map(int, input().split())
-        tree[x].append(y)
+        a, b = map(int, input().split())
+        tree[a].append(b)
+        in_degree[b] += 1
+
     destination = int(input())
-    print(check(destination))
+
+    ## 시작점 찾기: in_degree 차수가 0인 아이
+    queue = deque([])
+    for i in range(1, n+1):
+        if in_degree[i] == 0:
+            queue.append(i)
+            dp[i] = time[i]
+
+    dp_return = topology()
+
+    print(dp_return[destination])
+
 
 
