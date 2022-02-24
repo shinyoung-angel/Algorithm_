@@ -46,38 +46,38 @@ print(min_time, height)
 #### 그리고 필요한 땅의 크기를 각각 비교하고 최소값을 찾음
 #### 이후 필요에 따라 또다시 분기
 
-n, m, b = map(int, input().split())
-ground = []
-max_num = 0
-min_num = 256
-max_need = 0
-min_need = 0
-
-def check ():
-    global max_num
-
-    flag = 0
-    extract = 0
-    add = 0
-
-    while flag == 0:
-
-        max_num -= 1
-        for i in range(n):
-            for j in range(m):
-                tmp = ground[i][j]
-                if tmp > max_num:
-                    extract += tmp - max_num
-                    tmp -= (tmp-max_num)
-                else:
-                    add += max_num - tmp
-                    tmp += (max_num-tmp)
-        if extract+b >= add:
-            flag = 1
-            second = extract * 2 + add
-            tall = max_num
-
-    return [second, tall]
+# n, m, b = map(int, input().split())
+# ground = []
+# max_num = 0
+# min_num = 256
+# max_need = 0
+# min_need = 0
+#
+# def check ():
+#     global max_num
+#
+#     flag = 0
+#     extract = 0
+#     add = 0
+#
+#     while flag == 0:
+#
+#         max_num -= 1
+#         for i in range(n):
+#             for j in range(m):
+#                 tmp = ground[i][j]
+#                 if tmp > max_num:
+#                     extract += tmp - max_num
+#                     tmp -= (tmp-max_num)
+#                 else:
+#                     add += max_num - tmp
+#                     tmp += (max_num-tmp)
+#         if extract+b >= add:
+#             flag = 1
+#             second = extract * 2 + add
+#             tall = max_num
+#
+#     return [second, tall]
 
 
 
