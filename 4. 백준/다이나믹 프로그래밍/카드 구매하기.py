@@ -1,6 +1,6 @@
 N = int(input())
 p = [0] + list(map(int,input().split()))
-dp = [0 for _ in range(N+1)]
+dp = [0] * (N+1)
 
 
 for i in range(1,N+1):
